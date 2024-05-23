@@ -1,0 +1,136 @@
+using System;
+
+namespace FitnessClub
+{
+    class Program
+    {
+        static void Main(string[] args)
+        { 
+            {
+                Console.WriteLine("Добро пожаловать в фитнес клуб!");
+                Console.WriteLine("Пожалуйста, выберите действие:");
+                Console.WriteLine("1. Посмотреть расписание тренировок");
+                Console.WriteLine("2. Записаться на тренировку");
+                Console.WriteLine("3. Выйти из приложения");
+
+                bool exit = false;
+
+                while (!exit)
+                {
+                    Console.Write("Выберите действие (1-3): ");
+                    string choice = Console.ReadLine();
+
+                    switch (choice)
+                    { 
+                        case "1":
+                            Console.WriteLine(' ');
+                            Console.WriteLine("Расписание тренировок:");
+                            Console.WriteLine("Понедельник: 10:00 - Йога");
+                            Console.WriteLine("Вторник: 15:00 - Пилатес");
+                            Console.WriteLine("Среда: 18:00 - Зумба");
+                            Console.WriteLine("Четверг: 11:00 - 12:00 - Сальса/бачата");
+                            Console.WriteLine("Пятница: 17:00 - 18:00 - Стретчинг");
+                            Console.WriteLine("Суббота: 12:00 - 13:00 - Силовая");
+                            Console.WriteLine("Воскресенье: 9:00 - 10:00 - Латина микс");
+                            break;
+                        case "2":
+                            Console.WriteLine("Введите ваш номер телефона");
+                            string phoneNumber = Console.ReadLine();
+
+                            while (!(phoneNumber.Length == 12 && phoneNumber.StartsWith("+79")))
+                            {
+                                Console.WriteLine("Некорректный номер телефона. Пожалуйста, введите номер, начинающийся с '+79' и имеющий 12 символов.");
+                                phoneNumber = Console.ReadLine();
+                            }
+
+                            Console.WriteLine("На какой день вы хотели бы записаться?");
+                            Console.WriteLine(' ');
+
+                            void Raspisanie()
+                            {
+                                Console.WriteLine("Расписание тренировок:");
+                                Console.WriteLine("Понедельник: 10:00 - 11:00 - Йога");
+                                Console.WriteLine("Вторник: 15:00 - 16:00 - Пилатес");
+                                Console.WriteLine("Среда: 18:00 - 19:00 - Зумба");
+                                Console.WriteLine("Четверг: 11:00 - 12:00 - Сальса/бачата");
+                                Console.WriteLine("Пятница: 17:00 - 18:00 - Стретчинг");
+                                Console.WriteLine("Суббота: 12:00 - 13:00 - Силовая");
+                                Console.WriteLine("Воскресенье: 9:00 - 10:00 - Латина микс");
+                            }
+                            Raspisanie();
+                            
+                            bool validChoice2 = false;
+
+                            while (!validChoice2)
+                            {
+                                Console.WriteLine("Выберите день недели от 1 до 7");
+                                string choice2 = Console.ReadLine();
+
+                                if (int.TryParse(choice2, out int day) && day >= 1 && day <= 7)
+                                {
+                                    validChoice2 = true;
+                                    string[] daysOfWeek = { "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье" };
+                                    Console.WriteLine($"{daysOfWeek[day - 1]}: ");
+
+                                    string DaysOfWeek = "";
+                                    string discipline = "";
+                                    string time = "";
+
+                                    switch (day)
+                                    {
+                                        case 1:
+                                            DaysOfWeek = "Понедельник";
+                                            discipline = "Йога";
+                                            time = "10:00 - 11:00";
+                                            break;
+                                        case 2:
+                                            DaysOfWeek = "Вторник";
+                                            discipline = "Пилатес";
+                                            time = "15:00 - 16:00";
+                                            break;
+                                        case 3:
+                                            DaysOfWeek = "Среда";
+                                            discipline = "Зумба";
+                                            time = "18:00 - 19:00";
+                                            break;
+                                        case 4:
+                                            DaysOfWeek = "Четверг";
+                                            discipline = "Сальса/бачата";
+                                            time = "11:00 - 12:00";
+                                            break;
+                                        case 5:
+                                            DaysOfWeek = "Пятница";
+                                            discipline = "Стретчинг";
+                                            time = "17:00 - 18:00";
+                                            break;
+                                        case 6:
+                                            DaysOfWeek = "Суббота";
+                                            discipline = "Силовая";
+                                            time = "12:00 - 13:00";
+                                            break;
+                                        case 7:
+                                            DaysOfWeek = "Воскресенье";
+                                            discipline = "Латина микс";
+                                            time = "9:00 - 10:00";
+                                            break;
+                                    }
+                                    Console.WriteLine($"Вы успешно записались на {DaysOfWeek} - {time} - {discipline}");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Ошибка: Введите число от 1 до 7.");
+                                }
+                            }
+                            break;
+                        case "3":
+                            exit = true;
+                            break;
+                        default:
+                            Console.WriteLine("Неверный выбор. Пожалуйста, выберите действие от 1 до 3.");
+                            break;
+                    }
+                }
+            }
+        }
+    }
+}
